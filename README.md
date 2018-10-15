@@ -1,4 +1,3 @@
-# hostinkey
 # Hostinkey
 Shell script to install a [Hostinkey Masternode]on a Linux server running Ubuntu 16.04.  
 This script will install **Hostinkey**.
