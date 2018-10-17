@@ -50,14 +50,14 @@ echo -e "${NC}"
 #Generating Random Password for hostinkeyd RPC
 rpcpassword=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)
 
-#Create 2GB swap file
+#Create 8GB swap file
 if grep -q "SwapTotal" /proc/meminfo; then
     echo -e "${GREEN}Skipping disk swap configuration...${NC} \n"
 else
-    echo -e "${RED}Creating 2GB disk swap file. \nThis may take a few minutes!${NC} \a"
+    echo -e "${RED}Creating 8GB disk swap file. \nThis may take a few minutes!${NC} \a"
     touch /var/swap.img
     chmod 600 swap.img
-    dd if=/dev/zero of=/var/swap.img bs=1024k count=2000
+    dd if=/dev/zero of=/var/swap.img bs=1024k count=8000
     mkswap /var/swap.img 2> /dev/null
     swapon /var/swap.img 2> /dev/null
     if [ $? -eq 0 ]; then
