@@ -5,7 +5,7 @@ CONFIG_FILE='hostinkey.conf'
 CONFIGFOLDER='/root/.hostinkey'
 COIN_DAEMON='/usr/local/bin/hostinkeyd'
 COIN_CLI='/usr/local/bin/hostinkey-cli'
-COIN_REPO='https://www.dropbox.com/s/n3bt5pdfp4x5x66/xhk-binary-linux.tar.gz'
+COIN_REPO='https://www.dropbox.com/s/kj1wb2m71es6xav/hostinkey-bin.tar.gz'
 COIN_NAME='HOSTINKEY'
 COIN_PORT=15868
 
