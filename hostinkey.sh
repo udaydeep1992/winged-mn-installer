@@ -7,7 +7,7 @@ COIN_DAEMON='/usr/local/bin/hostinkeyd'
 COIN_CLI='/usr/local/bin/hostinkey-cli'
 COIN_REPO='https://www.dropbox.com/s/kj1wb2m71es6xav/hostinkey-bin.tar.gz'
 COIN_NAME='HOSTINKEY'
-COIN_PORT=15868
+COIN_PORT=5910
 
 
 NODEIP=$(curl -s4 icanhazip.com)
