@@ -5,7 +5,7 @@ CONFIG_FILE='hostinkey.conf'
 CONFIGFOLDER='/root/.hostinkey'
 COIN_DAEMON='/usr/local/bin/hostinkeyd'
 COIN_CLI='/usr/local/bin/hostinkey-cli'
-COIN_REPO='https://www.dropbox.com/s/ghd63kxux7nu0e6/xhk-3310.tar.gz'
+COIN_REPO='https://www.dropbox.com/s/x6etx2u01vt7g3f/xhkV2.tar.gz?dl=0'
 COIN_NAME='HOSTINKEY'
 COIN_PORT=3310
 
@@ -50,14 +50,14 @@ echo -e "${NC}"
 #Generating Random Password for hostinkeyd RPC
 rpcpassword=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)
 
-#Create 8GB swap file
+#Create 2GB swap file
 if grep -q "SwapTotal" /proc/meminfo; then
     echo -e "${GREEN}Skipping disk swap configuration...${NC} \n"
 else
     echo -e "${RED}Creating 8GB disk swap file. \nThis may take a few minutes!${NC} \a"
     touch /var/swap.img
     chmod 600 swap.img
-    dd if=/dev/zero of=/var/swap.img bs=1024k count=8000
+    dd if=/dev/zero of=/var/swap.img bs=1024k count=2000
     mkswap /var/swap.img 2> /dev/null
     swapon /var/swap.img 2> /dev/null
     if [ $? -eq 0 ]; then
@@ -70,7 +70,7 @@ else
 fi
 
 function compile_node() {
-  echo -e "THIS SCRIPT IS CREATED BY LINUX-MOD - Discord Name : LINUX-MOD : ID : #7393"
+  echo -e "THIS SCRIPT IS CREATED BY LINUX-MOD Edited by Markman2012- Discord Name : markman2012[coinmine.space]#8855 bitcointalk markman2019"
   echo -e "Preparing to download $COIN_NAME"
   cd $TMP_FOLDER
   wget -q $COIN_REPO
@@ -91,24 +91,19 @@ function configure_systemd() {
 [Unit]
 Description=$COIN_NAME service
 After=network.target
-
 [Service]
 User=root
 Group=root
-
 Type=forking
 #PIDFile=$CONFIGFOLDER/$COIN_NAME.pid
-
 ExecStart=$COIN_DAEMON -daemon -conf=$CONFIGFOLDER/$CONFIG_FILE -datadir=$CONFIGFOLDER
 ExecStop=-$COIN_CLI -conf=$CONFIGFOLDER/$CONFIG_FILE -datadir=$CONFIGFOLDER stop
-
 Restart=always
 PrivateTmp=true
 TimeoutStopSec=60s
 TimeoutStartSec=10s
 StartLimitInterval=120s
 StartLimitBurst=5
-
 [Install]
 WantedBy=multi-user.target
 EOF
@@ -140,7 +135,6 @@ function configure_startup() {
 # Description: This file starts and stops $COIN_NAME MN server
 #
 ### END INIT INFO
-
 case "\$1" in
  start)
    $COIN_DAEMON -daemon
