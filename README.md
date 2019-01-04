@@ -4,7 +4,7 @@ This script will install **Hostinkey**.
 
 ## Installation:
 ```
- git clone https://github.com/linux-mod/XHK-hostikey.git
+ git clone https://github.com/hostinkey-project/XHK-hostinkey.git
  cd XHK-hostikey
  chmod 755 hostinkey.sh
  bash hostinkey.sh
