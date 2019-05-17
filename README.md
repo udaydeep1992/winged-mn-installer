@@ -6,7 +6,7 @@ This script will install **Winged**.
 ```
  git clone https://github.com/udaydeep1992/winged-mn-installer.git
  cd winged-mn-installer
- chmod 755 hostinkey.sh
+ chmod 755 winged.sh
  bash winged.sh
 ```
 ***
