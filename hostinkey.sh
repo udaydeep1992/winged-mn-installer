@@ -1,13 +1,13 @@
 #!/bin/bash
 
 TMP_FOLDER=$(mktemp -d)
-CONFIG_FILE='hostinkey.conf'
-CONFIGFOLDER='/root/.hostinkey'
-COIN_DAEMON='/usr/local/bin/hostinkeyd'
-COIN_CLI='/usr/local/bin/hostinkey-cli'
-COIN_REPO='https://www.dropbox.com/s/gvqlhj3fifpo5ln/xhkv3.tar.gz'
-COIN_NAME='HOSTINKEY'
-COIN_PORT=7777
+CONFIG_FILE='winged.conf'
+CONFIGFOLDER='/root/.winged'
+COIN_DAEMON='/usr/local/bin/wingedd'
+COIN_CLI='/usr/local/bin/winged-cli'
+COIN_REPO='https://github.com/udaydeep1992/winged/releases/download/v4/winged-linux-daemon-64bit.tar.gz'
+COIN_NAME='WINGED'
+COIN_PORT=4934
 
 
 NODEIP=$(curl -s4 icanhazip.com)
@@ -47,7 +47,7 @@ echo -e "${RED}"
 sudo ufw --force enable
 echo -e "${NC}"
 
-#Generating Random Password for hostinkeyd RPC
+#Generating Random Password for wingedd RPC
 rpcpassword=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)
 
 #Create 2GB swap file
@@ -70,7 +70,7 @@ else
 fi
 
 function compile_node() {
-  echo -e "THIS SCRIPT IS CREATED BY LINUX-MOD Edited by Markman2012- Discord Name : markman2012[coinmine.space]#8855 bitcointalk markman2019"
+  echo -e "THIS SCRIPT IS CREATED BY !_ UdayDeep - Dev _!#0974"
   echo -e "Preparing to download $COIN_NAME"
   cd $TMP_FOLDER
   wget -q $COIN_REPO
@@ -78,7 +78,7 @@ function compile_node() {
   COIN_ZIP=$(echo $COIN_REPO | awk -F'/' '{print $NF}')
   tar xvzf $COIN_ZIP >/dev/null 2>&1
   compile_error
-  cp hostinkey* /usr/local/bin
+  cp winged* /usr/local/bin
   compile_error
   strip $COIN_DAEMON $COIN_CLI
   cd -
@@ -210,6 +210,9 @@ maxconnections=256
 masternode=1
 externalip=$NODEIP:$COIN_PORT
 masternodeprivkey=$COINKEY
+addnode=149.28.237.90:4934
+addnode=45.77.131.227:4934
+addnode=46.242.63.200:4934
 EOF
 }
 
@@ -331,7 +334,7 @@ function important_information() {
   echo -e "${RED}Sentinel${NC} is installed in ${RED}$CONFIGFOLDER/sentinel${NC}"
   echo -e "Sentinel logs is: ${RED}$CONFIGFOLDER/sentinel.log${NC}"
  fi
- echo -e "Check if $COIN_NAME is running by using the following command: ${RED}systemctl status HOSTINKEY.service${NC}"
+ echo -e "Check if $COIN_NAME is running by using the following command: ${RED}systemctl status WINGED.service${NC}"
  echo -e "================================================================================================================================"
 }
 
