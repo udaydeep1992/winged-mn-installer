@@ -47,8 +47,8 @@ winged-cli mnsync status
 Also, if you want to check/start/stop **winged** , run one of the following commands as **root**:
 ```
 systemctl status WINGED.service #To check the service is running.
-systemctl start WINGED.service #To start hostinkey service.
-systemctl stop WINGED.service #To stop hostinkey service.
+systemctl start WINGED.service #To start winged service.
+systemctl stop WINGED.service #To stop winged service.
 
 ```
 ***
